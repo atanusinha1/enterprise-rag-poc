@@ -1,0 +1,30 @@
+# .NET Build outputs
+bin/
+obj/
+*.user
+*.suo
+*.sln.docstates
+
+# Node / Frontend dependencies
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# IDE configurations
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Secrets (Prevent uploading keys to GitHub)
+# It is recommended to keep appsettings.json with placeholders on GitHub, 
+# and use environment variables or appsettings.local.json for real keys.
+# appsettings.json
