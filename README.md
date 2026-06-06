@@ -103,3 +103,7 @@ Vite runs on port `5173` and the C# API runs on a port configured by Visual Stud
 5. Go to the **RAG Assistant** tab:
    - Select **Enterprise Chat Assistant**: Type a question (e.g., "What is the policy on X?") and press enter. The model will cite facts and provide clickable buttons corresponding to the exact document paragraphs retrieved.
    - Select **Semantic Search Only**: Type a search phrase to view raw chunks returned from pgvector alongside their cosine similarity score (e.g., `Similarity: 86.42%`).
+
+   ---
+
+   ## Pipeline Integration
