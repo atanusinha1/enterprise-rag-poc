@@ -1,0 +1,45 @@
+name: Deploy ASP.NET Core Backend to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-deploy.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Setup .NET Core SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      # 3. Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore backend/EnterpriseRagPoc.csproj
+
+      # 4. Build C# project
+      - name: Build Project
+        run: dotnet build backend/EnterpriseRagPoc.csproj --configuration Release --no-restore
+
+      # 5. Publish build binaries
+      - name: Publish Binaries
+        run: dotnet publish backend/EnterpriseRagPoc.csproj --configuration Release --no-build --output ./publish
+
+      # 6. Deploy to Azure Web App
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_BACKEND_APP_NAME }} # Set in GitHub Secrets
+          publish-profile: ${{ secrets.AZURE_BACKEND_PUBLISH_PROFILE }} # Set in GitHub Secrets
+          package: ./publish
