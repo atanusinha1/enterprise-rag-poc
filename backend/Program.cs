@@ -79,4 +79,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapGet("/", () => "Enterprise RAG POC API is running successfully.");
+
 app.Run();
